@@ -25,9 +25,11 @@ class App(tk.Tk):
 
         self.frame_1 = tk.Frame(master=self)
         self.frame_1.place(relx=0.5, rely=0.5, anchor="center")
+        
 
         self.frame_1 = tk.Frame(master=self)
         self.frame_1.pack(pady=20, padx=40, fill="both", expand=True)
+        
 
         main_label = tk.Label(master=self.frame_1, text="4-20 analog simulator",
                               font=("Helvetica", 20, "bold")
@@ -36,7 +38,26 @@ class App(tk.Tk):
 
         button_explore = tk.Button(master=self.frame_1,
                                    command=sim_higher,
-                                   text="4-20mA then 20-4mA")
+                                   text="4-20mA then 20-4mA",
+                                   width=18)
+        button_explore.pack(pady=10, padx=10)
+
+        button_explore = tk.Button(master=self.frame_1,
+                                   command=set_value_4ma,
+                                   text="Set value to 4mA",
+                                   width=18)
+        button_explore.pack(pady=10, padx=10)
+
+        button_explore = tk.Button(master=self.frame_1,
+                                   command=set_value_12ma,
+                                   text="Set value to 12mA",
+                                   width=18)
+        button_explore.pack(pady=10, padx=10)
+
+        button_explore = tk.Button(master=self.frame_1,
+                                   command=set_value_20ma,
+                                   text="Set value to 20mA",
+                                   width=18)
         button_explore.pack(pady=10, padx=10)
 
 try:
@@ -73,6 +94,18 @@ def sim_lower():
 
         if value1 <= 680 or value2 <= 680:
             break
+
+
+def set_value_4ma():
+    outputs.write_single(0, 680)
+
+
+def set_value_12ma():
+    outputs.write_single(0, 2063)
+
+
+def set_value_20ma():
+    outputs.write_single(0, 3446)
 
 def main():
     try:
