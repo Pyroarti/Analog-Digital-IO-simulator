@@ -26,8 +26,8 @@ def sim_higher():
 def sim_lower():
     t = 0
     while True:
-        value1 = 680 - t
-        value2 = 680 - t
+        value1 = 3446 - t
+        value2 = 3446 - t
         outputs.write_single(0, int(value1))
         outputs.write_single(1, int(value2))
         print(value1)
