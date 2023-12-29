@@ -21,3 +21,4 @@ class ModuleManager:
         do = DigitalOut()
         self.digital_outputs.append(do)
         return do
+    

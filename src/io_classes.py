@@ -1,4 +1,25 @@
-from widgetlords.pi_spi import Mod2AO
+
+
+class ModuleManager:
+    def __init__(self):
+        self.analog_outputs = []
+        self.digital_inputs = []
+        self.digital_outputs = []
+
+    def create_analog_out(self):
+        ao = AnalogOut()
+        self.analog_outputs.append(ao)
+        return ao
+
+    def create_digital_in(self):
+        di = DigitalIn()
+        self.digital_inputs.append(di)
+        return di
+
+    def create_digital_out(self):
+        do = DigitalOut()
+        self.digital_outputs.append(do)
+        return do
 
 class AnalogIn:
     """The Pi-SPi-8AI+ has 8 channel 4-20 mA input module"""
@@ -11,12 +32,13 @@ class AnalogOut:
     simultaneous 2 channels of 0 to 10 VDC output."""
 
     def __init__(self):
-        self.module = Mod2AO()
+        #self.module = Mod2AO()
+        pass
 
 
     def set_current_output(self, channel, value):
         scaled_value = int((value - 4) * (4095 / 16))
-        self.module.write_single(channel, scaled_value)
+        #self.module.write_single(channel, scaled_value)
 
 
     def set_voltage_output(self, channel, value):
@@ -29,7 +51,8 @@ class DigitalIn:
     (Max 24 V) and are optically isolated."""
 
     def __init__(self):
-        self.module = Mod8DI()
+        #self.module = Mod8DI()
+        pass
 
     def read_inputs(self):
         return self.module.read()
@@ -40,7 +63,8 @@ class DigitalOut:
     """The Pi-SPi-8KO has 2 SPDT relays and 6 relay signal outputs."""
 
     def __init__(self):
-        self.module = Mod8KO()
+        #self.module = Mod8KO()
+        pass
 
     def set_output(self, output_number, state):
   
